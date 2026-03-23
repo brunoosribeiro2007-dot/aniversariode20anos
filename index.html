@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartão de Namorados Elegante</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Great+Vibes&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-container">
+        <div id="bokeh-container"></div>
+        <div id="heart-container"></div>
+    </div>
+
+    <main class="main-content">
+        <div class="card-wrapper">
+            <div class="photo-frame" id="photoFrame">
+                <div class="photo-inner">
+                    <img id="userPhoto" src="https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?q=80&w=800&auto=format&fit=crop" alt="Foto de Namorados">
+                </div>
+                <div class="photo-overlay">
+                    <input type="file" id="photoInput" accept="image/*" style="display: none;">
+                    <button class="upload-btn" onclick="document.getElementById('photoInput').click()">Mudar Foto</button>
+                </div>
+            </div>
+
+            <div class="message-container">
+                <h1 class="title">Feliz Dia dos Namorados</h1>
+                <p class="message">Você é a melhor parte do meu dia, a razão do meu sorriso e o amor da minha vida. Cada momento ao seu lado é um presente que eu guardo no coração.</p>
+                <div class="actions">
+                    <button class="btn animated-btn" id="openCardBtn">Abrir Surpresa</button>
+                    <button class="btn secondary-btn" id="changeThemeBtn">Mudar Cor</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
