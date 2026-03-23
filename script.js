@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const bokehContainer = document.getElementById('bokeh-container');
     const userPhoto = document.getElementById('userPhoto');
     const openCardBtn = document.getElementById('openCardBtn');
-    const changeThemeBtn = document.getElementById('changeThemeBtn');
 
     // --- Carousel Data ---
     const photos = [
@@ -94,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show Surprise Modal after a small delay
         setTimeout(() => {
             document.getElementById('surpriseOverlay').classList.add('active');
-            startCarousel();
         }, 1000);
     });
 
@@ -102,16 +100,23 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('surpriseOverlay').classList.remove('active');
     });
 
-    changeThemeBtn.addEventListener('click', () => {
-        const themes = [
-            { primary: '#ffccd5', bg: 'linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%)' },
-            { primary: '#fbc4ab', bg: 'linear-gradient(135deg, #fdf0d5 0%, #fbc4ab 100%)' },
-            { primary: '#cdb4db', bg: 'linear-gradient(135deg, #f2e9e4 0%, #cdb4db 100%)' },
-            { primary: '#bde0fe', bg: 'linear-gradient(135deg, #edf2fb 0%, #bde0fe 100%)' }
-        ];
-        
-        const randomTheme = themes[Math.floor(Math.random() * themes.length)];
-        document.documentElement.style.setProperty('--primary-red', randomTheme.primary);
-        document.body.style.background = randomTheme.bg;
-    });
+    // --- Auto Theme Rotation ---
+    let currentThemeIndex = 0;
+    const themes = [
+        { primary: '#ffccd5', bg: 'linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%)' },
+        { primary: '#fbc4ab', bg: 'linear-gradient(135deg, #fdf0d5 0%, #fbc4ab 100%)' },
+        { primary: '#cdb4db', bg: 'linear-gradient(135deg, #f2e9e4 0%, #cdb4db 100%)' },
+        { primary: '#bde0fe', bg: 'linear-gradient(135deg, #edf2fb 0%, #bde0fe 100%)' }
+    ];
+
+    function rotateTheme() {
+        currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+        const theme = themes[currentThemeIndex];
+        document.documentElement.style.setProperty('--primary-rose', theme.primary);
+        document.body.style.background = theme.bg;
+    }
+
+    // Start auto-animations
+    startCarousel();
+    setInterval(rotateTheme, 6000); // Change theme every 6 seconds
 });
