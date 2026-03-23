@@ -250,3 +250,83 @@ body {
         width: 100%;
     }
 }
+
+/* Surprise Overlay */
+.surprise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+}
+
+.surprise-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.surprise-card {
+    background: var(--white);
+    color: var(--dark-red);
+    padding: 3rem;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    transform: translateY(30px);
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.surprise-overlay.active .surprise-card {
+    transform: translateY(0);
+}
+
+.surprise-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: var(--primary-red);
+}
+
+.surprise-message {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    color: #444;
+}
+
+.surprise-message p {
+    margin-bottom: 1rem;
+}
+
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    color: var(--primary-red);
+}
+
+@media (max-width: 480px) {
+    .surprise-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .surprise-title {
+        font-size: 2.5rem;
+    }
+    
+    .surprise-message {
+        font-size: 1rem;
+    }
+}

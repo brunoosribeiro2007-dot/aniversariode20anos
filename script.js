@@ -7,10 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Carousel Data ---
     const photos = [
-        "https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1474552226712-ac0f0961a954?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1516589174184-c685eb32162e?q=80&w=800&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1511733351957-2cdd9f9a9992?q=80&w=800&auto=format&fit=crop"
+        "img/WhatsApp Image 2026-03-23 at 10.50.43.jpeg",
+        "img/WhatsApp Image 2026-03-23 at 11.07.06.jpeg",
+        "img/WhatsApp Image 2026-03-23 at 11.07.07 (1).jpeg",
+        "img/WhatsApp Image 2026-03-23 at 11.07.07.jpeg"
     ];
     let currentPhotoIndex = 0;
     let carouselInterval = null;
@@ -82,17 +82,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Button Actions ---
     openCardBtn.addEventListener('click', () => {
-        // Animation effect
-        document.querySelector('.card-wrapper').style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            document.querySelector('.card-wrapper').style.transform = 'scale(1)';
-            startCarousel();
-        }, 150);
-        
-        // Intensify hearts
-        for(let i=0; i<30; i++) {
-            setTimeout(createHeart, i * 30);
+        // Heart Burst
+        for(let i=0; i<80; i++) {
+            setTimeout(createHeart, i * 20);
         }
+
+        // Show Surprise Modal after a small delay
+        setTimeout(() => {
+            document.getElementById('surpriseOverlay').classList.add('active');
+            startCarousel();
+        }, 1000);
+    });
+
+    document.getElementById('closeSurpriseBtn').addEventListener('click', () => {
+        document.getElementById('surpriseOverlay').classList.remove('active');
     });
 
     changeThemeBtn.addEventListener('click', () => {
