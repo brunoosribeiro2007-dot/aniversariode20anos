@@ -10,7 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
         "img/WhatsApp Image 2026-03-23 at 10.50.43.jpeg",
         "img/WhatsApp Image 2026-03-23 at 11.07.06.jpeg",
         "img/WhatsApp Image 2026-03-23 at 11.07.07 (1).jpeg",
-        "img/WhatsApp Image 2026-03-23 at 11.07.07.jpeg"
+        "img/WhatsApp Image 2026-03-23 at 11.07.07.jpeg",
+        "img/WhatsApp Image 2026-03-23 at 11.22.43.jpeg",
+        "img/WhatsApp Image 2026-03-23 at 11.22.44 (1).jpeg",
+        "img/WhatsApp Image 2026-03-23 at 11.22.44 (2).jpeg",
+        "img/WhatsApp Image 2026-03-23 at 11.22.44.jpeg"
     ];
     let currentPhotoIndex = 0;
     let carouselInterval = null;
