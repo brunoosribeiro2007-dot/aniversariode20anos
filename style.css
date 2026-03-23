@@ -1,12 +1,14 @@
 :root {
-    --primary-red: #ff4d6d;
-    --soft-pink: #ffb3c1;
-    --dark-red: #800f2f;
-    --rose-gold: #e29578;
-    --bg-gradient: linear-gradient(135deg, #590d22 0%, #ff4d6d 100%);
+    --primary-rose: #ffccd5;
+    --soft-pink: #fff0f3;
+    --deep-rose: #c9184a;
+    --gold: #d4af37;
+    --gold-gradient: linear-gradient(72deg, #ffdc73 0, #ffcf40 10%, #ffdc73 20%, #ffcf40 30%, #ffff73 40%, #ffdc73 50%, #ffcf40 60%, #ffdc73 70%, #ffcf40 80%, #ffff73 90%, #ffdc73 100%);
+    --bg-gradient: linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%);
     --white: #ffffff;
-    --glass-bg: rgba(255, 255, 255, 0.15);
-    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-bg: rgba(255, 255, 255, 0.7); /* More opaque for light theme */
+    --glass-border: rgba(255, 204, 213, 0.5);
+    --text-dark: #800f2f;
 }
 
 * {
@@ -89,7 +91,7 @@ body {
 .card-wrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: 3rem;
+    gap: 2rem;
     align-items: center;
     justify-content: center;
     background: var(--glass-bg);
@@ -97,8 +99,10 @@ body {
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     border-radius: 30px;
-    padding: 3rem;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    padding: 2.5rem;
+    box-shadow: 0 15px 35px rgba(255, 179, 193, 0.3);
+    max-width: 900px;
+    width: 95%;
 }
 
 /* Photo Frame 3x4 aspect ratio */
@@ -278,17 +282,15 @@ body {
 }
 
 .surprise-card {
-    background: rgba(45, 0, 15, 0.6); /* Darker glass for much better contrast */
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: var(--white);
+    border: 1px solid var(--primary-rose);
     border-radius: 30px;
-    padding: 4rem;
-    max-width: 800px;
-    width: 90%;
+    padding: 3rem;
+    max-width: 700px;
+    width: 92%;
     text-align: center;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.6);
-    color: var(--white);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    color: var(--text-dark);
     transform: translateY(30px);
     transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -301,16 +303,18 @@ body {
     font-family: 'Great Vibes', cursive;
     font-size: 3rem;
     margin-bottom: 2rem;
-    color: var(--primary-red);
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .surprise-message {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     line-height: 1.8;
     margin-bottom: 2.5rem;
     font-weight: 400;
-    color: var(--white);
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    color: var(--text-dark);
 }
 
 .surprise-message p {
