@@ -102,41 +102,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Carousel Logic (smooth cross-fade with Ken Burns) ---
-    function advanceCarousel() {
-        // Fade out current
-        userPhoto.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    function showPhoto(index) {
+        // Fade in new photo
+        userPhoto.src = photos[index];
+        userPhoto.style.transition = 'none';
         userPhoto.style.opacity = '0';
-        userPhoto.style.transform = 'scale(1.08)';
+        userPhoto.style.transform = 'scale(1)';
 
-        // Burst hearts from photo frame
+        // Use setTimeout to let browser process the new src before transitioning
+        setTimeout(() => {
+            userPhoto.style.transition = 'opacity 0.8s ease, transform 7s ease';
+            userPhoto.style.opacity = '1';
+            userPhoto.style.transform = 'scale(1.07)';
+        }, 50);
+    }
+
+    function advanceCarousel() {
+        // Burst hearts from photo frame first
         burstHeartsFromPhoto();
+
+        // Fade out current
+        userPhoto.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        userPhoto.style.opacity = '0';
+        userPhoto.style.transform = 'scale(1.1)';
 
         setTimeout(() => {
             currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
-            userPhoto.src = photos[currentPhotoIndex];
-            userPhoto.style.transition = 'none';
-            userPhoto.style.transform = 'scale(1)';
-
-            userPhoto.onload = () => {
-                userPhoto.style.transition = 'opacity 0.7s ease, transform 6s ease';
-                userPhoto.style.opacity = '1';
-                userPhoto.style.transform = 'scale(1.06)'; // Ken Burns subtle zoom
-            };
-            // Fallback in case onload doesn't fire (cached image)
-            if (userPhoto.complete) {
-                userPhoto.style.transition = 'opacity 0.7s ease, transform 6s ease';
-                userPhoto.style.opacity = '1';
-                userPhoto.style.transform = 'scale(1.06)';
-            }
-        }, 650);
+            showPhoto(currentPhotoIndex);
+        }, 550);
     }
 
     function startCarousel() {
         if (carouselInterval) clearInterval(carouselInterval);
-        // Start Ken Burns on first image
-        userPhoto.style.transition = 'transform 6s ease';
-        userPhoto.style.transform = 'scale(1.06)';
-        carouselInterval = setInterval(advanceCarousel, 4000);
+        // Start Ken Burns on first image immediately
+        showPhoto(currentPhotoIndex);
+        carouselInterval = setInterval(advanceCarousel, 4500);
     }
 
     // --- Button Actions ---
