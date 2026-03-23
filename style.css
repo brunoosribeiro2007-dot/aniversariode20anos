@@ -128,39 +128,11 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 .photo-frame:hover .photo-inner img {
     transform: scale(1.1);
-}
-
-.photo-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.photo-frame:hover .photo-overlay {
-    opacity: 1;
-}
-
-.upload-btn {
-    background: var(--primary-red);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.9rem;
 }
 
 /* Message Area */
@@ -176,11 +148,12 @@ body {
     margin-bottom: 1.5rem;
     background: linear-gradient(to right, #fff, var(--soft-pink));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .message {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     line-height: 1.8;
     margin-bottom: 2rem;
     color: rgba(255,255,255,0.9);
@@ -230,17 +203,50 @@ body {
 }
 
 /* Mobile Responsiveness */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
     .card-wrapper {
-        padding: 2rem;
+        flex-direction: column;
+        text-align: center;
+        padding: 3rem 2rem;
     }
     
+    .message-container {
+        text-align: center;
+    }
+    
+    .actions {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
     .title {
         font-size: 3rem;
     }
     
+    .message {
+        font-size: 1.1rem;
+    }
+    
     .photo-frame {
-        width: 240px;
-        height: 320px;
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+        aspect-ratio: 3/4;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2.5rem;
+    }
+    
+    .actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%;
     }
 }

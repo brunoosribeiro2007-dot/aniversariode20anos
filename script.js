@@ -1,10 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     const heartContainer = document.getElementById('heart-container');
     const bokehContainer = document.getElementById('bokeh-container');
-    const photoInput = document.getElementById('photoInput');
     const userPhoto = document.getElementById('userPhoto');
     const openCardBtn = document.getElementById('openCardBtn');
     const changeThemeBtn = document.getElementById('changeThemeBtn');
+
+    // --- Carousel Data ---
+    const photos = [
+        "https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1474552226712-ac0f0961a954?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1516589174184-c685eb32162e?q=80&w=800&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1511733351957-2cdd9f9a9992?q=80&w=800&auto=format&fit=crop"
+    ];
+    let currentPhotoIndex = 0;
+    let carouselInterval = null;
 
     // --- Particle System (Hearts) ---
     function createHeart() {
@@ -58,17 +67,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     createBokeh();
 
-    // --- Photo Update ---
-    photoInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                userPhoto.src = event.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-    });
+    // --- Carousel Logic ---
+    function startCarousel() {
+        if (carouselInterval) clearInterval(carouselInterval);
+        carouselInterval = setInterval(() => {
+            currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+            userPhoto.style.opacity = '0';
+            setTimeout(() => {
+                userPhoto.src = photos[currentPhotoIndex];
+                userPhoto.style.opacity = '1';
+            }, 500);
+        }, 3000);
+    }
 
     // --- Button Actions ---
     openCardBtn.addEventListener('click', () => {
@@ -76,12 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.card-wrapper').style.transform = 'scale(0.95)';
         setTimeout(() => {
             document.querySelector('.card-wrapper').style.transform = 'scale(1)';
-            alert('🎂🎂 Feliz Aniversário de 20 Anos! 🎂🎂\nQue este novo ciclo seja incrível!');
+            startCarousel();
         }, 150);
         
         // Intensify hearts
-        for(let i=0; i<20; i++) {
-            setTimeout(createHeart, i * 50);
+        for(let i=0; i<30; i++) {
+            setTimeout(createHeart, i * 30);
         }
     });
 
