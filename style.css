@@ -1,11 +1,12 @@
 :root {
-    --primary-red: #da2c38;
+    --primary-red: #ff4d6d;
     --soft-pink: #ffb3c1;
-    --dark-red: #590d22;
-    --bg-gradient: linear-gradient(135deg, #590d22 0%, #da2c38 100%);
+    --dark-red: #800f2f;
+    --rose-gold: #e29578;
+    --bg-gradient: linear-gradient(135deg, #590d22 0%, #ff4d6d 100%);
     --white: #ffffff;
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.3);
 }
 
 * {
@@ -64,7 +65,8 @@ body {
 
 .heart-particle {
     position: absolute;
-    color: rgba(255, 255, 255, 0.4);
+    color: #ff0000; /* Vibrant Red */
+    text-shadow: 0 0 5px rgba(255,0,0,0.5);
     pointer-events: none;
     animation: heartFloat linear forwards;
 }
@@ -276,16 +278,16 @@ body {
 }
 
 .surprise-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
+    background: rgba(45, 0, 15, 0.6); /* Darker glass for much better contrast */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 30px;
     padding: 4rem;
     max-width: 800px;
     width: 90%;
     text-align: center;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6);
     color: var(--white);
     transform: translateY(30px);
     transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -303,11 +305,12 @@ body {
 }
 
 .surprise-message {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1.8;
     margin-bottom: 2.5rem;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+    color: var(--white);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .surprise-message p {
