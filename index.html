@@ -108,9 +108,12 @@
 
         .main-content {
             width: 100%;
-            max-width: 900px;
-            padding: 2rem;
+            padding: 1rem;
             perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .card-wrapper {
@@ -124,10 +127,10 @@
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 30px;
-            padding: 2.5rem;
+            padding: 2rem 1.5rem;
             box-shadow: 0 15px 35px rgba(255, 179, 193, 0.3);
             max-width: 900px;
-            width: 95%;
+            width: 100%;
             margin: 0 auto;
         }
 
@@ -249,16 +252,23 @@
             pointer-events: all;
         }
 
+        .surprise-overlay {
+            align-items: flex-start;
+            padding: 1rem 0;
+            overflow-y: auto;
+        }
+
         .surprise-card {
             background: var(--white);
             border: 1px solid var(--primary-rose);
-            border-radius: 30px;
-            padding: 3rem;
-            max-width: 700px;
+            border-radius: 24px;
+            padding: 2rem 1.5rem;
+            max-width: 680px;
             width: 92%;
             text-align: center;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
             color: var(--text-dark);
+            margin: auto;
             transform: translateY(30px);
             transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
@@ -269,8 +279,8 @@
 
         .surprise-title {
             font-family: 'Great Vibes', cursive;
-            font-size: 3rem;
-            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             background-clip: text;
@@ -278,77 +288,88 @@
         }
 
         .surprise-message {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            margin-bottom: 2.5rem;
+            font-size: 1.05rem;
+            line-height: 1.75;
+            margin-bottom: 2rem;
             font-weight: 400;
             color: var(--text-dark);
         }
 
         .surprise-message p {
-            margin-bottom: 1rem;
+            margin-bottom: 0.9rem;
         }
 
         .signature {
             font-family: 'Dancing Script', cursive;
-            font-size: 1.8rem;
-            margin-top: 2rem;
+            font-size: 1.6rem;
+            margin-top: 1.5rem;
             color: var(--deep-rose);
         }
 
+        /* === RESPONSIVE === */
         @media (max-width: 992px) {
             .card-wrapper {
                 flex-direction: column;
                 text-align: center;
-                padding: 2rem;
+                padding: 1.5rem 1rem;
+                gap: 1.2rem;
             }
-
             .message-container {
                 text-align: center;
             }
-
             .actions {
                 justify-content: center;
             }
         }
 
-        @media (max-width: 768px) {
-            .title {
-                font-size: 3rem;
+        @media (max-width: 600px) {
+            body {
+                align-items: flex-start;
             }
-
-            .message {
-                font-size: 1.1rem;
+            .main-content {
+                min-height: auto;
+                padding: 0.75rem 0.5rem;
             }
-
-            .photo-frame {
+            .card-wrapper {
+                border-radius: 20px;
+                padding: 1.25rem 1rem;
+                gap: 1rem;
                 width: 100%;
+            }
+            .photo-frame {
+                width: 85vw;
                 max-width: 260px;
                 height: auto;
-                aspect-ratio: 3/4;
+                aspect-ratio: 3 / 4;
+            }
+            .title {
+                font-size: 2.4rem;
+            }
+            .message {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            .surprise-title {
+                font-size: 2rem;
+            }
+            .surprise-message {
+                font-size: 0.95rem;
+            }
+            .signature {
+                font-size: 1.4rem;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 400px) {
             .title {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
-
-            .actions {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .btn {
-                width: 100%;
-            }
-
-            .surprise-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .surprise-title {
-                font-size: 2.2rem;
+            .photo-frame {
+                width: 90vw;
             }
         }
 
