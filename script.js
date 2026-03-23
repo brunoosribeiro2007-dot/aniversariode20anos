@@ -104,10 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     changeThemeBtn.addEventListener('click', () => {
         const themes = [
-            { primary: '#da2c38', bg: 'linear-gradient(135deg, #590d22 0%, #da2c38 100%)' },
-            { primary: '#7b2cbf', bg: 'linear-gradient(135deg, #240046 0%, #7b2cbf 100%)' },
-            { primary: '#ff4d6d', bg: 'linear-gradient(135deg, #800f2f 0%, #ff4d6d 100%)' },
-            { primary: '#fb8500', bg: 'linear-gradient(135deg, #023047 0%, #fb8500 100%)' }
+            { primary: '#ff4d6d', bg: 'linear-gradient(135deg, #590d22 0%, #ff4d6d 100%)' },
+            { primary: '#ff007f', bg: 'linear-gradient(135deg, #480ca8 0%, #ff007f 100%)' },
+            { primary: '#ff85a1', bg: 'linear-gradient(135deg, #800f2f 0%, #ff85a1 100%)' },
+            { primary: '#f15bb5', bg: 'linear-gradient(135deg, #001219 0%, #f15bb5 100%)' }
         ];
         
         const randomTheme = themes[Math.floor(Math.random() * themes.length)];
