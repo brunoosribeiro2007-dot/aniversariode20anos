@@ -4,7 +4,205 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cartão de Namorados Elegante</title>
-    <link rel="stylesheet" href="style.css?v=2">
+    <style>
+/* CSS Variables */
+:root {
+    --primary-rose: #ffccd5;
+    --soft-pink: #fff0f3;
+    --deep-rose: #c9184a;
+    --gold: #d4af37;
+    --gold-gradient: linear-gradient(72deg, #ffdc73 0, #ffcf40 10%, #ffdc73 20%, #ffcf40 30%, #ffff73 40%, #ffdc73 50%, #ffcf40 60%, #ffdc73 70%, #ffcf40 80%, #ffff73 90%, #ffdc73 100%);
+    --bg-gradient: linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%);
+    --white: #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 204, 213, 0.5);
+    --text-dark: #800f2f;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-dark);
+}
+
+.background-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
+#bokeh-container, #heart-container { position: absolute; width: 100%; height: 100%; }
+
+.bokeh {
+    position: absolute;
+    background: radial-gradient(circle, rgba(255,179,193,0.3) 0%, rgba(255,179,193,0) 70%);
+    border-radius: 50%;
+    filter: blur(20px);
+    animation: floatBokeh 15s infinite ease-in-out;
+}
+
+@keyframes floatBokeh {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.2); }
+    66% { transform: translate(-20px, 40px) scale(0.8); }
+}
+
+.heart-particle {
+    position: absolute;
+    color: #ff0000;
+    text-shadow: 0 0 5px rgba(255,0,0,0.5);
+    pointer-events: none;
+    animation: heartFloat linear forwards;
+}
+
+@keyframes heartFloat {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+.main-content { width: 100%; max-width: 900px; padding: 2rem; perspective: 1000px; }
+
+.card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    padding: 2.5rem;
+    box-shadow: 0 15px 35px rgba(255, 179, 193, 0.3);
+    max-width: 900px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.photo-frame {
+    position: relative;
+    width: 280px;
+    height: 373px;
+    background: var(--white);
+    padding: 15px 15px 45px 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    transform: rotate(-3deg);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.photo-frame:hover { transform: rotate(0deg) scale(1.05); }
+.photo-inner { width: 100%; height: 100%; overflow: hidden; background: #eee; }
+.photo-inner img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease, opacity 0.5s ease; }
+
+.message-container { flex: 1; min-width: 300px; text-align: left; }
+
+.title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+}
+
+.message {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.actions { display: flex; gap: 1rem; }
+.btn { border: none; padding: 1rem 2rem; border-radius: 50px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; }
+
+.animated-btn { background: var(--deep-rose); color: white; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+.animated-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(201, 24, 74, 0.3); background: #ff4d6d; }
+
+.secondary-btn { background: transparent; border: 2px solid var(--primary-rose); color: var(--text-dark); }
+.secondary-btn:hover { background: var(--primary-rose); }
+
+.surprise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+}
+
+.surprise-overlay.active { opacity: 1; pointer-events: all; }
+
+.surprise-card {
+    background: var(--white);
+    border: 1px solid var(--primary-rose);
+    border-radius: 30px;
+    padding: 3rem;
+    max-width: 700px;
+    width: 92%;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    color: var(--text-dark);
+    transform: translateY(30px);
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.surprise-overlay.active .surprise-card { transform: translateY(0); }
+
+.surprise-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.surprise-message { font-size: 1.15rem; line-height: 1.8; margin-bottom: 2.5rem; font-weight: 400; color: var(--text-dark); }
+.surprise-message p { margin-bottom: 1rem; }
+.signature { font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin-top: 2rem; color: var(--deep-rose); }
+
+@media (max-width: 992px) {
+    .card-wrapper { flex-direction: column; text-align: center; padding: 2rem; }
+    .message-container { text-align: center; }
+    .actions { justify-content: center; }
+}
+
+@media (max-width: 768px) {
+    .title { font-size: 3rem; }
+    .message { font-size: 1.1rem; }
+    .photo-frame { width: 100%; max-width: 260px; height: auto; aspect-ratio: 3/4; }
+}
+
+@media (max-width: 480px) {
+    .title { font-size: 2.2rem; }
+    .actions { flex-direction: column; width: 100%; }
+    .btn { width: 100%; }
+    .surprise-card { padding: 2rem 1.5rem; }
+    .surprise-title { font-size: 2.2rem; }
+}
+
+.version-tag { position: fixed; bottom: 5px; right: 5px; font-size: 8px; color: rgba(0,0,0,0.1); pointer-events: none; }
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Great+Vibes&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -47,6 +245,7 @@
         </div>
     </div>
 
+    <span class="version-tag">V1.3 - Light Rose & Gold</span>
     <script src="script.js"></script>
 </body>
 </html>
