@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.card-wrapper').style.transform = 'scale(0.95)';
         setTimeout(() => {
             document.querySelector('.card-wrapper').style.transform = 'scale(1)';
-            alert('❤️❤️ Feliz Dia dos Namorados! ❤️❤️\nVocê é muito especial!');
+            alert('🎂🎂 Feliz Aniversário de 20 Anos! 🎂🎂\nQue este novo ciclo seja incrível!');
         }, 150);
         
         // Intensify hearts
