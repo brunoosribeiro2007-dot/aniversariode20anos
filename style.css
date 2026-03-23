@@ -275,14 +275,17 @@ body {
 }
 
 .surprise-card {
-    background: var(--white);
-    color: var(--dark-red);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--white);
     padding: 3rem;
     border-radius: 20px;
     max-width: 500px;
     width: 90%;
     text-align: center;
     box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     transform: translateY(30px);
     transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -302,8 +305,8 @@ body {
     font-size: 1.1rem;
     line-height: 1.8;
     margin-bottom: 2.5rem;
-    font-weight: 400;
-    color: #444;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .surprise-message p {
